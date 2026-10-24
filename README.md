@@ -8,6 +8,10 @@
 - 手机：Android Chrome、iOS Safari（必须 HTTPS）
 - 同一套页面，无需安装 App
 
+## 效果展示
+
+![手机摄像头对准纸质数独，绿色答案直接叠加在空格中](demo.png)
+
 ## 快速开始
 
 ```bash
