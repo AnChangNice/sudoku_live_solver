@@ -1,5 +1,7 @@
 # 实时数独求解（摄像头 + AR 叠加）
 
+**在线使用**：<https://anchangnice.github.io/sudoku_live_solver/>
+
 用摄像头对准纸质数独，页面自动找出九宫格、识别已知数字、求解，并把答案**直接叠加到视频里的空格中**。纯前端实现：画面不上传，手机浏览器也能用。
 
 - PC：Chrome / Edge + USB 摄像头
