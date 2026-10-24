@@ -65,7 +65,7 @@ test('节点上限返回 limit', () => {
   assert.equal(result.status, 'limit');
 });
 
-test('parsePuzzle / formatPuzzle 对齐 C 版本语义', () => {
+test('parsePuzzle / formatPuzzle 输入语义', () => {
   const grid = parsePuzzle('1.2X3'.padEnd(81, '.'));
   assert.equal(grid[0], 1);
   assert.equal(grid[1], 0);

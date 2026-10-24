@@ -1,2 +1,8 @@
-# Windows 可执行文件（由 c/Makefile 生成）
-*.exe
+node_modules/
+dist/
+public/vendor/opencv.js
+test-results/
+playwright-report/
+blob-report/
+*.local
+.DS_Store
