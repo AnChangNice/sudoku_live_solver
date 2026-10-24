@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1"
+    />
+    <meta name="theme-color" content="#0b0d10" />
+    <meta name="description" content="实时摄像头数独求解器：识别纸质数独并把答案叠加回视频。" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>实时数独求解</title>
+  </head>
+  <body>
+    <div id="stage">
+      <video id="video" playsinline muted autoplay></video>
+      <canvas id="frozen" class="media" hidden></canvas>
+      <canvas id="overlay" class="overlay"></canvas>
+
+      <header id="topbar">
+        <div id="status" class="status" data-kind="info">正在加载识别引擎…</div>
+        <button id="btn-settings" class="icon-btn" aria-label="设置">⚙</button>
+      </header>
+
+      <div id="debug" hidden></div>
+
+      <div id="gate" class="gate" hidden>
+        <div class="gate-card">
+          <h1>实时数独求解</h1>
+          <p>用摄像头对准纸质数独，答案会直接叠加到空格里。</p>
+          <p class="muted">画面只在本机处理，不会上传。</p>
+          <button id="btn-start" class="primary">开启摄像头</button>
+          <button id="btn-photo-gate" class="link">或从相册选择照片</button>
+        </div>
+      </div>
+
+      <div id="loading" class="gate">
+        <div class="gate-card">
+          <div class="spinner"></div>
+          <p>正在加载识别引擎</p>
+          <p class="muted">约 10 MB，仅首次需要</p>
+        </div>
+      </div>
+
+      <div id="error-card" class="gate" hidden>
+        <div class="gate-card">
+          <h2>无法启动</h2>
+          <p id="error-text" class="muted"></p>
+          <button id="btn-retry" class="primary">重试</button>
+        </div>
+      </div>
+
+      <footer id="bottombar" hidden>
+        <button data-action="freeze" id="btn-freeze">定格</button>
+        <button data-action="switch">切换</button>
+        <button data-action="torch" id="btn-torch" hidden>手电</button>
+        <button data-action="photo">相册</button>
+        <button data-action="edit">编辑</button>
+      </footer>
+
+      <section id="edit-panel" class="sheet" hidden aria-label="校对盘面">
+        <div class="sheet-head">
+          <h2>校对盘面</h2>
+          <button data-action="close-edit" class="icon-btn">✕</button>
+        </div>
+        <p id="edit-hint" class="muted small"></p>
+        <div id="edit-grid" class="edit-grid"></div>
+        <div id="numpad" class="numpad" hidden></div>
+        <div class="sheet-actions">
+          <button data-action="reread">重新识别</button>
+          <button data-action="ignore" id="edit-ignore" hidden>都当空格</button>
+          <button data-action="done" class="primary">完成</button>
+        </div>
+      </section>
+
+      <section id="settings-panel" class="sheet" hidden aria-label="设置">
+        <div class="sheet-head">
+          <h2>设置</h2>
+          <button data-action="close-settings" class="icon-btn">✕</button>
+        </div>
+        <label class="row">
+          <span>处理帧率</span>
+          <select id="set-fps">
+            <option value="6">6 FPS（省电）</option>
+            <option value="10">10 FPS</option>
+            <option value="12">12 FPS</option>
+            <option value="15">15 FPS</option>
+            <option value="20">20 FPS</option>
+            <option value="30">30 FPS（最流畅）</option>
+          </select>
+        </label>
+        <label class="row">
+          <span>识别灵敏度</span>
+          <select id="set-sens">
+            <option value="high">灵敏（更多候选，可能误识）</option>
+            <option value="medium">标准</option>
+            <option value="low">严格（宁可待确认）</option>
+          </select>
+        </label>
+        <label class="row switch">
+          <span>高亮待确认格</span>
+          <input type="checkbox" id="set-highlight" />
+        </label>
+        <label class="row switch">
+          <span>保持屏幕常亮</span>
+          <input type="checkbox" id="set-wakelock" />
+        </label>
+        <label class="row switch">
+          <span>显示调试信息</span>
+          <input type="checkbox" id="set-debug" />
+        </label>
+        <div class="sheet-actions">
+          <button id="btn-save-warp">保存识别图</button>
+          <button data-action="close-settings" class="primary">完成</button>
+        </div>
+      </section>
+
+      <div id="toast" hidden></div>
+      <input id="file-input" type="file" accept="image/*" capture="environment" hidden />
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

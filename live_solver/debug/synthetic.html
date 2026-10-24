@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <title>合成图像管线测试</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 18px;
+        background: #11141a;
+        color: #e8eaf0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      h1 {
+        font-size: 16px;
+      }
+      #report {
+        white-space: pre-wrap;
+        font-size: 12px;
+        line-height: 1.5;
+        background: #0b0d10;
+        border: 1px solid #2a2f3a;
+        border-radius: 8px;
+        padding: 12px;
+        max-width: 900px;
+      }
+      canvas {
+        max-width: 100%;
+        border: 1px solid #2a2f3a;
+        border-radius: 6px;
+        margin: 10px 6px 10px 0;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>合成图像管线测试（检测 → 校正 → 识别 → 求解）</h1>
+    <pre id="report">初始化…</pre>
+    <canvas id="source"></canvas>
+    <canvas id="target"></canvas>
+    <script type="module" src="./synthetic.js"></script>
+  </body>
+</html>

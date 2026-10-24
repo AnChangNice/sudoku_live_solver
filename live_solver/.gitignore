@@ -1,0 +1,8 @@
+node_modules/
+dist/
+public/vendor/opencv.js
+test-results/
+playwright-report/
+blob-report/
+*.local
+.DS_Store
